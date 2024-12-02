@@ -1,0 +1,6 @@
+"id","latitude","longitude","name","display_name","zone","total_lines","rail"
+1,51.5586,-0.1059,"Arsenal",NULL,2,1,0
+2,51.5642,-0.1065,"Finsbury Park","Finsbury<br />Park",2,1,1
+3,51.546,-0.104,"Highbury & Islington","Highbury &<br />Islington",2,1,1
+4,51.5712,-0.0958,"Manor House","Manor<br />House",2.5,1,0
+5,51.5822,-0.0749,"Seven Sisters","Seven<br />Sisters",3,1,1
