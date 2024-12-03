@@ -14,45 +14,27 @@ class Graph:
     def eigenvector_centrality(self):
         new_eigencentres = [0 for x in range(len(self.graph))]
         old_eigencentres = [0 for x in range(len(self.graph))]
-        print("Iteration 1")
-        for i in range(len(self.graph)):
-            score = 0
-            for j in range(len(self.graph)):
-                score += self.graph[i][j]*(old_eigencentres[j] if old_eigencentres[j] != 0 else 1)
-            new_eigencentres[i] = score
-        print(new_eigencentres)
-        for i in range(len(old_eigencentres)):
-            old_eigencentres[i] = new_eigencentres[i]
+        for iteration in range(20):
+            sum = 0
+            for i in range(len(self.graph)):
+                score = 0
+                for j in range(len(self.graph)):
+                    score += self.graph[i][j]*(old_eigencentres[j] if old_eigencentres[j] != 0 else 1)
+                    sum += score
+                new_eigencentres[i] = score
+            new_eigencentres = [x/sum for x in new_eigencentres]
+            print("Iteration{} centers: {}".format(iteration,new_eigencentres))
+            for i in range(len(old_eigencentres)):
+                old_eigencentres[i] = new_eigencentres[i]
 
-        print("Iteration 2")
-        for i in range(len(self.graph)):
-            score = 0
-            for j in range(len(self.graph)):
-                score += self.graph[i][j]*(old_eigencentres[j] if old_eigencentres[j] != 0 else 1)
-            new_eigencentres[i] = score
-        print(new_eigencentres)
-        for i in range(len(old_eigencentres)):
-            old_eigencentres[i] = new_eigencentres[i]
+        max = 0
+        max_index = 0
+        for x in range(len(new_eigencentres)):
+            if new_eigencentres[x] > max:
+                max = new_eigencentres[x]
+                max_index = x
 
-        print("Iteration 3")
-        for i in range(len(self.graph)):
-            score = 0
-            for j in range(len(self.graph)):
-                score += self.graph[i][j]*(old_eigencentres[j] if old_eigencentres[j] != 0 else 1)
-            new_eigencentres[i] = score
-        print(new_eigencentres)
-        for i in range(len(old_eigencentres)):
-            old_eigencentres[i] = new_eigencentres[i]
-
-        print("Iteration 4")
-        for i in range(len(self.graph)):
-            score = 0
-            for j in range(len(self.graph)):
-                score += self.graph[i][j]*(old_eigencentres[j] if old_eigencentres[j] != 0 else 1)
-            new_eigencentres[i] = score
-        print(new_eigencentres)
-        for i in range(len(old_eigencentres)):
-            old_eigencentres[i] = new_eigencentres[i]
+        print("The most central node is: {} with a centrality of: {}".format(max_index, max))
 
 graph = None
 
