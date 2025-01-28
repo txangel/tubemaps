@@ -37,7 +37,10 @@ class Graph:
                 x['score'] = new_eigencentres[i]['score']
 
 
-        return sorted(new_eigencentres, key=lambda x: x['score'], reverse=True)
+        pre_normalised = sorted(new_eigencentres, key=lambda x: x['score'], reverse=True)
+        top_score = pre_normalised[0]['score']
+
+        return [{'name': x['name'], 'score': (x['score']/top_score)*100} for x in pre_normalised]
 
     def init_eigenvector(self):
         eigenvector = []
@@ -54,8 +57,9 @@ def main():
     graph = load_graph(args)
     eigenvector_centers = graph.eigenvector_centrality()
 
-    for x in eigenvector_centers:
-        print("{}, {}".format(x['name'], x['score']))
+    n = len(eigenvector_centers)
+    for i, x in enumerate(eigenvector_centers):
+        print("Station: {}, Rank: {}/{}, Score: {}".format(x['name'], i+1, n, x['score']))
 
 def load_graph(args):
 
