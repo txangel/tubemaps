@@ -59,7 +59,8 @@ def main():
 
     n = len(eigenvector_centers)
     for i, x in enumerate(eigenvector_centers):
-        print("Station: {}, Rank: {}/{}, Score: {}".format(x['name'], i+1, n, x['score']))
+        rank = round(((n-i)/n)*5,0)
+        print("Station: {}, Rank: {}, Score: {}".format(x['name'], rank, x['score']))
 
 def load_graph(args):
 
